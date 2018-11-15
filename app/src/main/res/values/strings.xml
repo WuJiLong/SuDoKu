@@ -2,5 +2,5 @@
     <string name="app_name">SuDoKu</string>
     <string name="selete_mod_string_block">先選格子再選數字</string>
     <string name="selete_mod_string_number">先選數字再選格子</string>
-
+    <string name="choos">選擇!</string>
 </resources>

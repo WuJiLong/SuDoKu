@@ -247,7 +247,7 @@ class RecvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                         new ColorPickerDialog(c, new UpdateColor((Button)v,color1), colorCode,"顏色1選擇").show();
                     }else{
                         colorCode=SettingGlobal.getNoSaveColor2();
-                        new ColorPickerDialog(c, new UpdateColor((Button)v,color2), colorCode,"顏色1選擇").show();
+                        new ColorPickerDialog(c, new UpdateColor((Button)v,color2), colorCode,"顏色2選擇").show();
                     }
                     //pick a color (changed in the UpdateColor listener)
                 }

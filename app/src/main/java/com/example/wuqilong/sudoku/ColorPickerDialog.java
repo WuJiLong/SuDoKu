@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
@@ -90,7 +91,6 @@ public class ColorPickerDialog extends Dialog {
             canvas.drawOval(new RectF(-r, -r, r, r), mPaint);
             //canvas.drawRect(new RectF(-r+10, r+140, r-10, r+200), mPaint);
 
-
             Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);
             Shader s = new LinearGradient(-CENTER_X+40, 0,CENTER_X-40,0, 0xffffffff,fullcolor, Shader.TileMode.CLAMP);
             p.setShader(s);
@@ -110,11 +110,26 @@ public class ColorPickerDialog extends Dialog {
             canvas.drawCircle(-CENTER_X+40 +(CENTER_X*2-80)*color_V, CENTER_X+305, 20, ppp);
             canvas.drawCircle((CENTER_X-125)*(float)java.lang.Math.cos(color_RANGE*2*PI),(CENTER_X-125)*(float)java.lang.Math.sin(color_RANGE*2*PI), 20, ppp);
 
-
             canvas.drawCircle(0, 0, CENTER_RADIUS, mCenterPaint);
 
 
+            Paint mPaint = new Paint();
+            mPaint.setStrokeWidth(3);
+            mPaint.setTextSize(150);
+            mPaint.setColor(Color.BLACK);
+            mPaint.setTextAlign(Paint.Align.CENTER);
+            Rect bounds = new Rect();
+            mPaint.getTextBounds(title, 0, title.length(), bounds);
 
+            canvas.drawText(title,  0,  -CENTER_X-CENTER_X_MOVE, mPaint);
+
+            mPaint.setStrokeWidth(3);
+            mPaint.setTextSize(100);
+            mPaint.setColor(Color.BLACK);
+            mPaint.setTextAlign(Paint.Align.CENTER);
+            bounds = new Rect();
+            mPaint.getTextBounds(getContext().getString(R.string.choos), 0, getContext().getString(R.string.choos).length(), bounds);
+            canvas.drawText(getContext().getString(R.string.choos),  0,  bounds.height()/2, mPaint);
 
             if (mTrackingCenter) {
                 int c = mCenterPaint.getColor();
@@ -122,6 +137,7 @@ public class ColorPickerDialog extends Dialog {
 
                 if (mHighlightCenter) {
                     mCenterPaint.setAlpha(0xFF);
+
                 } else {
                     mCenterPaint.setAlpha(0x80);
                 }
