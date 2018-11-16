@@ -24,9 +24,15 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Solution_operation_activity extends AppCompatActivity {
     final int ID=948700;
     //View editTextView;
+
+    private int hold_block=40;
+    private int hold_num=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +46,7 @@ public class Solution_operation_activity extends AppCompatActivity {
     void init(){
         createLabel();//創建textview
         loginListener();//登入textview事件
+        setNumButton();
 
         Button returnbt=findViewById(R.id.soa_return_BT);
         returnbt.setOnClickListener(new View.OnClickListener(){
@@ -49,7 +56,45 @@ public class Solution_operation_activity extends AppCompatActivity {
             }
         });
     }
+    private void setNumButton(){
+        List<Button> BT=new ArrayList<>();
 
+        BT.add((Button)findViewById(R.id.num1_BT));
+        BT.add((Button)findViewById(R.id.num2_BT));
+        BT.add((Button)findViewById(R.id.num3_BT));
+        BT.add((Button)findViewById(R.id.num4_BT));
+        BT.add((Button)findViewById(R.id.num5_BT));
+        BT.add((Button)findViewById(R.id.num6_BT));
+        BT.add((Button)findViewById(R.id.num7_BT));
+        BT.add((Button)findViewById(R.id.num8_BT));
+        BT.add((Button)findViewById(R.id.num9_BT));
+
+        View.OnClickListener listener=new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                int key_num=1;
+                switch (v.getId()){
+                    case R.id.num1_BT:key_num=1;break;
+                    case R.id.num2_BT:key_num=2;break;
+                    case R.id.num3_BT:key_num=3;break;
+                    case R.id.num4_BT:key_num=4;break;
+                    case R.id.num5_BT:key_num=5;break;
+                    case R.id.num6_BT:key_num=6;break;
+                    case R.id.num7_BT:key_num=7;break;
+                    case R.id.num8_BT:key_num=8;break;
+                    case R.id.num9_BT:key_num=9;break;
+                }
+                if(SettingGlobal.getSelectMod()==SettingGlobal.SELECTMOD_BLOCK){
+                    TextView view= findViewById(ID+hold_block);
+                    view.setText(String.valueOf(key_num));
+                }else{
+                    hold_num=key_num;
+                }
+            }
+        };
+        for(Button b:BT)
+            b.setOnClickListener(listener);
+    }
     private void showReturnDialog() {
         AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(this);
         MyAlertDialog.setTitle("返回主畫面");
@@ -74,8 +119,10 @@ public class Solution_operation_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int id=v.getId()-ID;
-
-                ((TextView)v).setText("A");
+                if(SettingGlobal.getSelectMod()==SettingGlobal.SELECTMOD_BLOCK)
+                    hold_block=id;
+                else
+                    ((TextView)v).setText(String.valueOf(hold_num));
             }
         };
         for(int i=0;i<81;i++){
@@ -108,7 +155,7 @@ public class Solution_operation_activity extends AppCompatActivity {
             //editText.setInputType(InputType.TYPE_CLASS_NUMBER);//僅限數字
             editText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);//置中
             editText.setTextSize(19);
-            editText.setText(String.valueOf(i));
+            //editText.setText(String.valueOf(i));
             editText.setLayoutParams(params);
             layout. addView ( editText );
         }
