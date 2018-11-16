@@ -1,4 +1,4 @@
-package com.example.wuqilong.sudoku;
+package com.example.wuqilong.sudoku.SuDoKu_Item;
 
 
 import java.util.Random;

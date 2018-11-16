@@ -21,6 +21,7 @@ public class ColorPickerDialog extends Dialog {
         void colorChanged(int color);
     }
 
+
     private OnColorChangedListener mListener;
     private int mInitialColor;
 

@@ -1,4 +1,4 @@
-package com.example.wuqilong.sudoku;
+package com.example.wuqilong.sudoku.SuDoKu_Item;
 
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
