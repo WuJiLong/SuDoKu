@@ -30,6 +30,7 @@ public class Solution_operation_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_solution_operation_activity);
 
         //editTextView=findViewById(R.id.view);
@@ -73,6 +74,7 @@ public class Solution_operation_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int id=v.getId()-ID;
+
                 ((TextView)v).setText("A");
             }
         };

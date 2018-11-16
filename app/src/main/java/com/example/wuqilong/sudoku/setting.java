@@ -29,6 +29,7 @@ public class setting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_setting);
         init();
     }
@@ -69,8 +70,10 @@ public class setting extends AppCompatActivity {
                         Toast.makeText(setting.this, "已儲存設定", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.save_and_return_bt:
-                        SettingGlobal.saveSetting(setting.this);
-                        Toast.makeText(setting.this, "已儲存設定", Toast.LENGTH_SHORT).show();
+                        if(SettingGlobal.isChangSetting()){
+                            SettingGlobal.saveSetting(setting.this);
+                            Toast.makeText(setting.this, "已儲存設定", Toast.LENGTH_SHORT).show();
+                        }
                         Intent intent=new Intent(setting.this,MainActivity.class);
                         startActivity(intent);
                         break;
@@ -96,7 +99,7 @@ public class setting extends AppCompatActivity {
                 }
             }
         };
-        MyAlertDialog.setNeutralButton("確認",OkClick );
+        MyAlertDialog.setNeutralButton("不儲存返回",OkClick );
         MyAlertDialog.setNegativeButton("取消",OkClick );
         MyAlertDialog.show();
     }
